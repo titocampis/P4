@@ -1,0 +1,8 @@
+[options]
+prefix = /Users/titocampis/PAV
+libdir = lib
+buildtype = release
+backend = ninja
+
+[properties]
+

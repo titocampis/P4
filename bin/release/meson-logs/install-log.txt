@@ -1,0 +1,10 @@
+# List of files installed by Meson
+# Does not contain files installed by custom scripts.
+/Users/titocampis/PAV/lib/libpav.a
+/Users/titocampis/PAV/bin/gmm_classify
+/Users/titocampis/PAV/bin/gmm_show
+/Users/titocampis/PAV/bin/gmm_train
+/Users/titocampis/PAV/bin/gmm_verify
+/Users/titocampis/PAV/bin/pearson
+/Users/titocampis/PAV/bin/fmatrix_cut
+/Users/titocampis/PAV/bin/fmatrix_show
