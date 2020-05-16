@@ -14,14 +14,15 @@ cleanup() {
    \rm -f $base.*
 }
 
-if [[ $# != 3 ]]; then
-   echo "$0 lpc_order input.wav output.lpcc"
+if [[ $# != 4 ]]; then
+   echo "$0 lpc_order ceps_order input.wav output.lpcc"
    exit 1
 fi
 
-lpc_order=$1
-inputfile=$2
-outputfile=$3
+lpc_order=$1 # Order of LPC
+ceps_order=$2 # Numero de coef del cepstrum
+inputfile=$3
+outputfile=$4
 
 UBUNTU_SPTK=0
 if [[ $UBUNTU_SPTK == 1 ]]; then
@@ -42,7 +43,7 @@ fi
 
 # Main command for feature extration
 sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
-	$LPC -l 240 -m $lpc_order | $LPC2C -m $lpc_order -M 15 > $base.lpcc
+	$LPC -l 240 -m $lpc_order | $LPC2C -m $lpc_order -M $ceps_order > $base.lpcc
 
 # Our array files need a header with the number of cols and rows:
 ncol=$((lpc_order+1)) # lpcc p =>  (gain a1 a2 ... ap) 

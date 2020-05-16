@@ -88,23 +88,25 @@ fi
 compute_lp() {
     for filename in $(cat $lists/class/all.train $lists/class/all.test); do
         mkdir -p `dirname $w/$FEAT/$filename.$FEAT`
-        EXEC="wav2lp 15 $db/$filename.wav $w/$FEAT/$filename.$FEAT"
+        EXEC="wav2lp 14 $db/$filename.wav $w/$FEAT/$filename.$FEAT"
         echo $EXEC && $EXEC || exit 1
     done
 }
 
+# Primer parametro lpc_order, segundo parametro ceps_order
 compute_lpcc() {
     for filename in $(cat $lists/class/all.train $lists/class/all.test); do
         mkdir -p `dirname $w/$FEAT/$filename.$FEAT`
-        EXEC="wav2lpcc 15 $db/$filename.wav $w/$FEAT/$filename.$FEAT"
+        EXEC="wav2lpcc 14 14 $db/$filename.wav $w/$FEAT/$filename.$FEAT"
         echo $EXEC && $EXEC || exit 1
     done
 }
 
+# Primer parametro mfcc_order, segundo parametro num filtros
 compute_mfcc() {
     for filename in $(cat $lists/class/all.train $lists/class/all.test); do
         mkdir -p `dirname $w/$FEAT/$filename.$FEAT`
-        EXEC="wav2mfcc 20 $db/$filename.wav $w/$FEAT/$filename.$FEAT"
+        EXEC="wav2mfcc 20 24 $db/$filename.wav $w/$FEAT/$filename.$FEAT"
         echo $EXEC && $EXEC || exit 1
     done
 }
@@ -139,7 +141,7 @@ for cmd in $*; do
            name=${dir/*\/}
            echo $name ----
            # T = threshold / N = nº iteraciones / m = nº gaussianas
-           gmm_train  -v 1 -T 0.001 -N 300 -m 10  -d $w/$FEAT -e $FEAT -g $w/gmm/$FEAT/$name.gmm $lists/class/$name.train || exit 1
+           gmm_train  -v 1 -T 0.0001 -N 40 -m 80 -i 1 -d $w/$FEAT -e $FEAT -g $w/gmm/$FEAT/$name.gmm $lists/class/$name.train || exit 1
            echo
        done
    elif [[ $cmd == test ]]; then
@@ -164,7 +166,7 @@ for cmd in $*; do
 	   #
 	   # - The name of the world model will be used by gmm_verify in the 'verify' command below.
        echo "Implement the trainworld option ..."
-       gmm_train -v 1 -T 0.001 -N 30 -m 10 -d $w/$FEAT -e $FEAT -g $w/gmm/$FEAT/all.gmm $lists/class/all.train || exit 1
+       gmm_train -v 1 -T 0.0001 -N 50 -m 50 -i 1 -e $FEAT -d $w/$FEAT -g $w/gmm/$FEAT/world.gmm $lists/verif/users_and_others.train  || exit 1
 
    elif [[ $cmd == verify ]]; then
        ## @file
@@ -176,7 +178,8 @@ for cmd in $*; do
 	   #   * <code> gmm_verify ... > $w/verif_${FEAT}_${name_exp}.log </code>
 	   #   * <code> gmm_verify ... | tee $w/verif_${FEAT}_${name_exp}.log </code>
        echo "Implement the verify option ..."
-       gmm_verify -d $w/$FEAT -e $FEAT -D $w/gmm/$FEAT -E gmm -w all $lists/gmm.list $lists/verif/all.test  $lists/verif/all.test.candidates > $w/verif_${FEAT}_${name_exp}.log || exit 1
+       gmm_verify -d $w/$FEAT/ -e $FEAT -D $w/gmm/$FEAT -w world -E gmm $lists/gmm.list $lists/verif/all.test $lists/verif/all.test.candidates | tee $w/verif_${FEAT}_${name_exp}.log
+       
 
 
    elif [[ $cmd == verif_err ]]; then
@@ -186,7 +189,7 @@ for cmd in $*; do
        fi
        # You can pass the threshold to spk_verif_score.pl or it computes the
        # best one for these particular results.
-       spk_verif_score.pl $w/verif_${FEAT}_${name_exp}.log | tee $w/verif_${FEAT}_${name_exp}.res
+       spk_verif_score $w/verif_${FEAT}_${name_exp}.log | tee $w/verif_${FEAT}_${name_exp}.res
 
    elif [[ $cmd == finalclass ]]; then
        ## @file

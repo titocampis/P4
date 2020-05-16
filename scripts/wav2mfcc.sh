@@ -14,14 +14,16 @@ cleanup() {
    \rm -f $base.*
 }
 
-if [[ $# != 3 ]]; then
-   echo "$0 mfcc_order input.wav output.mfcc"
+if [[ $# != 4 ]]; then
+   echo "$0 mfcc_order num_filters input.wav output.mfcc"
    exit 1
 fi
 
-mfcc_order=$1
-inputfile=$2
-outputfile=$3
+# Definimos aqui las variables que nos llegaran desde el spkid
+mfcc_order=$1 # Orden del cepstrum
+num_filters=$2 # Numero de filtros mel
+inputfile=$3
+outputfile=$4
 
 UBUNTU_SPTK=0
 if [[ $UBUNTU_SPTK == 1 ]]; then
@@ -39,8 +41,9 @@ else
 fi
 
 # Main command for feature extration
+# -s 8 ponemos la frecuencia de muestreo a 8kHz
 sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
-	$MFCC -l 240 -m $mfcc_order -n 40 -s 16 > $base.mfcc
+	$MFCC -l 240 -m $mfcc_order -n $num_filters -s 8 > $base.mfcc
 
 # Our array files need a header with the number of cols and rows:
 ncol=$((mfcc_order+1)) # mfcc p =>  (gain a1 a2 ... ap) 

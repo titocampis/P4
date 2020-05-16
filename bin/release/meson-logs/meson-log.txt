@@ -1,4 +1,4 @@
-Build started at 2020-05-12T11:46:29.850785
+Build started at 2020-05-16T11:29:28.366946
 Main binary: /usr/local/opt/python/bin/python3.7
 Build Options: -Dprefix=/Users/titocampis/PAV -Dlibdir=lib -Dbuildtype=release -Dbackend=ninja
 Python system: Darwin
@@ -25,8 +25,8 @@ Build targets in project: 19
 
 Found ninja-1.10.0 at /usr/local/bin/ninja
 Running compile:
-Working directory:  /var/folders/tl/hx3yw26s7hd8xg30bvrp_mjw0000gn/T/tmpz2klig_d
-Command line:  c++ /var/folders/tl/hx3yw26s7hd8xg30bvrp_mjw0000gn/T/tmpz2klig_d/testfile.cpp -o /var/folders/tl/hx3yw26s7hd8xg30bvrp_mjw0000gn/T/tmpz2klig_d/output.obj -pipe -c -std=c++11 
+Working directory:  /var/folders/tl/hx3yw26s7hd8xg30bvrp_mjw0000gn/T/tmpmr91vjk0
+Command line:  c++ /var/folders/tl/hx3yw26s7hd8xg30bvrp_mjw0000gn/T/tmpmr91vjk0/testfile.cpp -o /var/folders/tl/hx3yw26s7hd8xg30bvrp_mjw0000gn/T/tmpmr91vjk0/output.obj -pipe -c -std=c++11 
 
 Code:
  int i = static_cast<int>(0);
@@ -36,8 +36,8 @@ Compiler stderr:
  
 Compiler accepts -std=c++11: YES
 Running compile:
-Working directory:  /Users/titocampis/Desktop/4B/PAV/Lab/P4/bin/release/meson-private/tmpz7hmcpjf
-Command line:  c++ /Users/titocampis/Desktop/4B/PAV/Lab/P4/bin/release/meson-private/tmpz7hmcpjf/testfile.cpp -o /Users/titocampis/Desktop/4B/PAV/Lab/P4/bin/release/meson-private/tmpz7hmcpjf/output.obj -pipe -c -O0 -fpermissive --print-search-dirs 
+Working directory:  /Users/titocampis/Desktop/4B/PAV/Lab/P4/bin/release/meson-private/tmp3_3kop7j
+Command line:  c++ /Users/titocampis/Desktop/4B/PAV/Lab/P4/bin/release/meson-private/tmp3_3kop7j/testfile.cpp -o /Users/titocampis/Desktop/4B/PAV/Lab/P4/bin/release/meson-private/tmp3_3kop7j/output.obj -pipe -c -O0 -fpermissive --print-search-dirs 
 
 Code:
  
