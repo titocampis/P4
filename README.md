@@ -49,7 +49,6 @@ Lpc calcula los lpc_order primeros coeficientes de predicción lineal, predichos
 - Explique el procedimiento seguido para obtener un fichero de formato *fmatrix* a partir de los ficheros
   de salida de SPTK (líneas 41 a 47 del script `wav2lp.sh`).
   
-      ```bash
       # Main command for feature extration
       sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
       $LPC -l 240 -m $lpc_order > $base.lp
@@ -57,7 +56,7 @@ Lpc calcula los lpc_order primeros coeficientes de predicción lineal, predichos
       # Our array files need a header with the number of cols and rows:
       ncol=$((lpc_order+1)) # lpc p =>  (gain a1 a2 ... ap) 
       nrow=`$X2X +fa < $base.lp | wc -l | perl -ne 'print $_/'$ncol', "\n";'`
-      ```
+  
 Basándonos en las explicaciones del apartado anterior, podemos entender como se gestionan los datos en este comando. Sox
 convierte la señal de raw al formato que queremos, (-e) nos indica signed y (-b) codifica en 16 bits. En FRAME, divide la
 señal de entrada en tramas de 240 muestras con desplazamientos de ventana de 80 muestras. Window multiplica por la ventana de
@@ -72,11 +71,9 @@ Este formato nos ayuda a tener todos los coeficientes juntos, ordenados y separa
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales de predicción lineal
   (LPCC) en su fichero <code>scripts/wav2lpcc.sh</code>:
 
-      ```bash
       # Main command for feature extration
       sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
 	    $LPC -l 240 -m $lpc_order | $LPC2C -m $lpc_order -M $ceps_order > $base.lpcc
-      ```
       
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales en escala Mel (MFCC) en
   su fichero <code>scripts/wav2mfcc.sh</code>:
@@ -87,6 +84,7 @@ Este formato nos ayuda a tener todos los coeficientes juntos, ordenados y separa
       # -s 8 ponemos la frecuencia de muestreo a 8kHz
       sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
 	    $MFCC -l 240 -m $mfcc_order -n $num_filters -s 8 > $base.mfcc
+
 ### Extracción de características.
 
 - Inserte una imagen mostrando la dependencia entre los coeficientes 2 y 3 de las tres parametrizaciones
