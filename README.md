@@ -213,6 +213,11 @@ En el trainworld se han utilizado los siguientes parámetros:
   - 50 iteraciones
   - 50 Gaussianas 
 
+Conclusiones:
+
+Hemos visto que algoritmo LPCC ha sido el que nos ha dado mejores resultados, con menor coste y menos error rate. MFCC y LP tienen mucho coste y el error rate a demás es más elevado, por tanto, si tubiesemos que quedarnos con uno, seria LPCC.
+
+
  
 ### Test final y trabajo de ampliación.
 
