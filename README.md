@@ -81,7 +81,7 @@ Este formato nos ayuda a tener todos los coeficientes juntos, ordenados y separa
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales en escala Mel (MFCC) en
   su fichero <code>scripts/wav2mfcc.sh</code>:
   
-      <img src="img/Captura de Pantalla 2020-05-16 a les 22.32.06.png" width="640" align="center">
+    <img src="img/Captura de Pantalla 2020-05-16 a les 22.32.06.png" width="640" align="center">
 
       ```c
       # Main command for feature extration
@@ -94,17 +94,17 @@ Este formato nos ayuda a tener todos los coeficientes juntos, ordenados y separa
 - Inserte una imagen mostrando la dependencia entre los coeficientes 2 y 3 de las tres parametrizaciones
   para una señal de prueba.
   
-      <img src="img/lp_16.jpg" width="640" align="center">
+    <img src="img/lp_16.jpg" width="640" align="center">
       
-      <img src="img/lp_17.jpg" width="640" align="center">
+    <img src="img/lp_17.jpg" width="640" align="center">
       
-      <img src="img/lpcc_16.jpg" width="640" align="center">
+    <img src="img/lpcc_16.jpg" width="640" align="center">
       
-      <img src="img/lpcc_16.jpg" width="640" align="center">
+    <img src="img/lpcc_16.jpg" width="640" align="center">
       
-      <img src="img/mfcc_16.jpg" width="640" align="center">
+    <img src="img/mfcc_16.jpg" width="640" align="center">
       
-      <img src="img/mfcc_16.jpg" width="640" align="center">
+    <img src="img/mfcc_16.jpg" width="640" align="center">
 
   + ¿Cuál de ellas le parece que contiene más información?
   
@@ -147,7 +147,7 @@ Complete el código necesario para entrenar modelos GMM.
 - Inserte una gráfica que muestre la función de densidad de probabilidad modelada por el GMM de un locutor
   para sus dos primeros coeficientes de MFCC.
   
-        <img src="img/gmm_ses258.png" width="640" align="center">
+  <img src="img/gmm_ses258.png" width="640" align="center">
         
 - Inserte una gráfica que permita comparar los modelos y poblaciones de dos locutores distintos (la gŕafica
   de la página 20 del enunciado puede servirle de referencia del resultado deseado). Analice la capacidad
