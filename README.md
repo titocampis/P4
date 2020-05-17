@@ -83,12 +83,10 @@ Este formato nos ayuda a tener todos los coeficientes juntos, ordenados y separa
   
     <img src="img/Captura de Pantalla 2020-05-16 a les 22.32.06.png" width="640" align="center">
 
-      ```bash
       # Main command for feature extration
       # -s 8 ponemos la frecuencia de muestreo a 8kHz
       sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
 	    $MFCC -l 240 -m $mfcc_order -n $num_filters -s 8 > $base.mfcc
-      ```
 ### Extracción de características.
 
 - Inserte una imagen mostrando la dependencia entre los coeficientes 2 y 3 de las tres parametrizaciones
