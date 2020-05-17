@@ -49,7 +49,7 @@ Lpc calcula los lpc_order primeros coeficientes de predicción lineal, predichos
 - Explique el procedimiento seguido para obtener un fichero de formato *fmatrix* a partir de los ficheros
   de salida de SPTK (líneas 41 a 47 del script `wav2lp.sh`).
   
-      ```
+      ```c
       # Main command for feature extration
       sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
       $LPC -l 240 -m $lpc_order > $base.lp
@@ -72,7 +72,7 @@ Este formato nos ayuda a tener todos los coeficientes juntos, ordenados y separa
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales de predicción lineal
   (LPCC) en su fichero <code>scripts/wav2lpcc.sh</code>:
 
-      ```
+      ```c
       # Main command for feature extration
       sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
 	    $LPC -l 240 -m $lpc_order | $LPC2C -m $lpc_order -M $ceps_order > $base.lpcc
@@ -83,7 +83,7 @@ Este formato nos ayuda a tener todos los coeficientes juntos, ordenados y separa
   
       <img src="img/Captura de Pantalla 2020-05-16 a les 22.32.06.png" width="640" align="center">
 
-      ```
+      ```c
       # Main command for feature extration
       # -s 8 ponemos la frecuencia de muestreo a 8kHz
       sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
