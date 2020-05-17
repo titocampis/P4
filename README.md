@@ -153,9 +153,9 @@ Complete el código necesario para entrenar modelos GMM.
   de la página 20 del enunciado puede servirle de referencia del resultado deseado). Analice la capacidad
   del modelado GMM para diferenciar las señales de uno y otro.
   
-          <img src="img/gmm_ses290.png" width="640" align="center">
+<img src="img/gmm_ses290.png" width="640" align="center">
           
-          <img src="img/gmm_ses258.png" width="640" align="center">
+<img src="img/gmm_ses258.png" width="640" align="center">
           
 En las imágenes anteriores estamos observando las predicciones hechas sobre 2 locutores distintos, con unos coeficientes
 distintos. Cada locutor tiene una GMM distinta, ya que las características MFCC de estos son también diferentes.
